@@ -143,6 +143,10 @@ class Connection extends \Illuminate\Database\Connection
         if (!isset($options['password']) && !empty($config['password'])) {
             $options['password'] = $config['password'];
         }
+        
+        if (isset($config['query_string']) && !empty($config['query_string'])) {
+            $dsn .= $config['query_string'];
+        }
 
         return new Client($dsn, $options, $driverOptions);
     }
